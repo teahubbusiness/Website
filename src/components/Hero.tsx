@@ -40,7 +40,7 @@ export function Hero() {
       <div className="absolute inset-0 z-0">
         {/* Base dark gradient */}
         <div className="absolute inset-0 bg-gradient-dark" />
-        
+
         {/* Primary background image with parallax */}
         <div
           className="absolute inset-0 opacity-40"
@@ -102,9 +102,7 @@ export function Hero() {
         <div className="max-w-4xl mx-auto text-center">
           {/* Small tagline */}
           <div className="opacity-initial animate-fade-in">
-            <span className="inline-block px-4 py-2 border border-gold/30 rounded-full text-gold/80 text-xs tracking-[0.2em] uppercase mb-8">
-              Single-Origin · Small-Batch · Premium
-            </span>
+
           </div>
 
           {/* Main heading */}
@@ -115,8 +113,7 @@ export function Hero() {
 
           {/* Subtitle */}
           <p className="opacity-initial animate-fade-in-up delay-400 text-ivory-muted text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            Discover TeaHub's exquisite collection of hand-selected teas from the world's finest estates. Each cup tells a story of terroir, tradition, and taste.
-          </p>
+            Where Leaves Come's to Tell Their Story           </p>
 
           {/* CTA Buttons */}
           <div className="opacity-initial animate-fade-in-up delay-600 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -129,28 +126,14 @@ export function Hero() {
               <ShoppingBag className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
               Explore Collection
             </Button>
-            <Button
-              variant="whatsapp"
-              size="xl"
-              asChild
-            >
-              <a
-                href="https://wa.me/91XXXXXXXXXX?text=Hi%20TeaHub%20%E2%80%94%20I%27m%20interested%20in%20your%20premium%20teas.%20Please%20help%20with%20pricing%20and%20delivery."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group"
-              >
-                <MessageCircle className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-                WhatsApp Us
-              </a>
-            </Button>
+
           </div>
 
           {/* Trust badges */}
           <div className="opacity-initial animate-fade-in delay-800 mt-16 flex flex-wrap items-center justify-center gap-8 text-ivory-muted/60 text-xs tracking-wider uppercase">
             <span>100% Organic</span>
             <span className="w-1 h-1 rounded-full bg-gold/50" />
-            <span>Free Shipping ₹500+</span>
+            <span>All Over India Shipping</span>
             <span className="w-1 h-1 rounded-full bg-gold/50" />
             <span>Premium Quality</span>
           </div>
@@ -163,7 +146,6 @@ export function Hero() {
             className="flex flex-col items-center gap-2 text-gold/60 hover:text-gold transition-colors group"
             aria-label="Scroll to explore"
           >
-            <span className="text-xs tracking-widest uppercase">Explore</span>
             <ChevronDown className="w-5 h-5 animate-bounce" />
           </button>
         </div>

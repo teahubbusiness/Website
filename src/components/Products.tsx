@@ -4,24 +4,19 @@ import { Button } from '@/components/ui/button';
 import { MessageCircle, Star, Filter } from 'lucide-react';
 
 // Product images
-import earlGreyImg from '@/assets/products/earl-grey.jpg';
 import assamGoldImg from '@/assets/products/assam-gold.jpg';
-import darjeelingImg from '@/assets/products/darjeeling.jpg';
 import masalaChaiImg from '@/assets/products/masala-chai.jpg';
 import organicGreenImg from '@/assets/products/organic-green.jpg';
-import chamomileBlissImg from '@/assets/products/chamomile-bliss.jpg';
 
 interface Product {
   id: string;
   name: string;
-  category: 'Classic' | 'Masala' | 'Herbal' | 'Premium';
+  category: 'Green Tea' | 'Masala Tea' | 'Premium Tea';
   image: string;
   description: string;
   tastingNotes: string;
   origin: string;
-  price: number;
-  originalPrice?: number;
-  sizes: string[];
+  pricing: { size: string; price: number; originalPrice?: number }[];
   rating: number;
   reviews: number;
   badge?: string;
@@ -29,98 +24,61 @@ interface Product {
 
 const products: Product[] = [
   {
-    id: 'earl-grey-reserve',
-    name: 'Earl Grey Reserve',
-    category: 'Classic',
-    image: earlGreyImg,
-    description: 'A distinguished blend with Calabrian bergamot',
-    tastingNotes: 'Citrus, floral, smooth finish with hints of lavender',
-    origin: 'Sri Lanka & Italy',
-    price: 599,
-    originalPrice: 749,
-    sizes: ['50g', '100g', '250g'],
-    rating: 4.9,
-    reviews: 128,
-    badge: 'Bestseller',
-  },
-  {
-    id: 'assam-gold',
-    name: 'Assam Gold',
-    category: 'Premium',
-    image: assamGoldImg,
-    description: 'Full-bodied golden tips from Upper Assam',
-    tastingNotes: 'Malty, robust, honey sweetness with brisk character',
-    origin: 'Upper Assam, India',
-    price: 799,
-    sizes: ['50g', '100g', '250g'],
-    rating: 4.8,
-    reviews: 94,
-    badge: 'Premium',
-  },
-  {
     id: 'darjeeling-first-flush',
-    name: 'Darjeeling First Flush',
-    category: 'Premium',
-    image: darjeelingImg,
-    description: 'The champagne of teas, spring harvest',
-    tastingNotes: 'Muscatel, floral, delicate with bright notes',
+    name: 'Premium Dust Tea',
+    category: 'Premium Tea',
+    image: assamGoldImg,
+    description: 'First-flush Darjeeling light, bright and floral with a delicate briskness.',
+    tastingNotes: 'Muscatel and floral aromatics with citrusy undertones and a clean, brisk finish.',
     origin: 'Darjeeling, India',
-    price: 999,
-    sizes: ['50g', '100g'],
+    pricing: [
+      { size: '100g', price: 99 },
+      { size: '250g', price: 199 },
+    ],
     rating: 5.0,
     reviews: 76,
-    badge: 'Limited',
+    badge: 'Popular',
   },
   {
     id: 'masala-chai',
     name: 'Masala Chai',
-    category: 'Masala',
+    category: 'Masala Tea',
     image: masalaChaiImg,
-    description: 'Traditional spiced tea with warming aromatics',
-    tastingNotes: 'Cinnamon, cardamom, ginger, clove symphony',
+    description: 'Robust spiced black tea blend crafted for brewing with milk warm and invigorating.',
+    tastingNotes: 'A warming mix of cinnamon, cardamom, ginger and clove full-bodied and comforting.',
     origin: 'Kerala, India',
-    price: 449,
-    originalPrice: 549,
-    sizes: ['100g', '250g', '500g'],
+    pricing: [
+      { size: '100g', price: 199 },
+      { size: '250g', price: 249 },
+    ],
     rating: 4.9,
     reviews: 215,
-    badge: 'Popular',
+    badge: 'Limited',
   },
   {
     id: 'organic-green',
     name: 'Organic Green',
-    category: 'Herbal',
+    category: 'Green Tea',
     image: organicGreenImg,
-    description: 'Pure, unoxidized leaves from organic gardens',
-    tastingNotes: 'Vegetal, fresh, subtle sweetness, clean finish',
+    description: 'Handpicked organic green tea with a fresh, grassy character and a clean finish.',
+    tastingNotes: 'Vegetal and fresh with subtle sweet notes, light umami and a crisp, clean finish.',
     origin: 'Nilgiris, India',
-    price: 549,
-    sizes: ['50g', '100g', '250g'],
+    pricing: [
+      { size: '50g', price: 149 },
+      { size: '100g', price: 289 },
+    ],
     rating: 4.7,
     reviews: 89,
   },
-  {
-    id: 'chamomile-bliss',
-    name: 'Chamomile Bliss',
-    category: 'Herbal',
-    image: chamomileBlissImg,
-    description: 'Calming herbal infusion for peaceful evenings',
-    tastingNotes: 'Honey-sweet, floral, soothing apple notes',
-    origin: 'Egypt & India',
-    price: 399,
-    sizes: ['50g', '100g'],
-    rating: 4.8,
-    reviews: 67,
-    badge: 'Relaxing',
-  },
 ];
 
-const categories = ['All', 'Classic', 'Masala', 'Herbal', 'Premium'];
+const categories = ['All', 'Green Tea', 'Masala Tea', 'Premium Tea'];
 
 export function Products() {
   const [isVisible, setIsVisible] = useState(false);
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedSizes, setSelectedSizes] = useState<Record<string, number>>({});
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -140,26 +98,34 @@ export function Products() {
     return () => observer.disconnect();
   }, []);
 
+  // Initialize selected sizes to first option for each product
+  useEffect(() => {
+    const initialSizes: Record<string, number> = {};
+    products.forEach((product) => {
+      initialSizes[product.id] = 0;
+    });
+    setSelectedSizes(initialSizes);
+  }, []);
+
   const filteredProducts = products.filter((product) => {
     const matchesCategory = activeCategory === 'All' || product.category === activeCategory;
-    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    const matchesSearch =
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.description.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
   const handleWhatsAppOrder = (product: Product) => {
+    const sizeIndex = selectedSizes[product.id] || 0;
+    const selectedPricing = product.pricing[sizeIndex];
     const message = encodeURIComponent(
-      `Hi TeaHub — I'm interested in ${product.name}. Please help with pricing and delivery.`
+      `Hi TeaHub — I'm interested in ${product.name} (${selectedPricing.size}) at ₹${selectedPricing.price}. Please help with delivery.`
     );
-    window.open(`https://wa.me/91XXXXXXXXXX?text=${message}`, '_blank');
+    window.open(`https://wa.me/918754148249?text=${message}`, '_blank');
   };
 
   return (
-    <section
-      ref={sectionRef}
-      id="flavours"
-      className="section-padding bg-background relative"
-    >
+    <section ref={sectionRef} id="flavours" className="section-padding bg-background relative">
       {/* Gradient accent */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
 
@@ -188,7 +154,7 @@ export function Products() {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             )}
           >
-            From robust Assam mornings to delicate Darjeeling afternoons, find your perfect brew.
+            Find your perfect brew.
           </p>
         </div>
 
@@ -232,98 +198,113 @@ export function Products() {
 
         {/* Products Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {filteredProducts.map((product, index) => (
-            <article
-              key={product.id}
-              className={cn(
-                'group bg-card border border-border rounded-xl overflow-hidden card-hover transition-all duration-500',
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              )}
-              style={{
-                transitionDelay: isVisible ? `${400 + index * 100}ms` : '0ms',
-              }}
-            >
-              {/* Image */}
-              <div className="relative aspect-square overflow-hidden">
-                <img
-                  src={product.image}
-                  alt={`${product.name} - ${product.description}`}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                />
-                
-                {/* Overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                {/* Badge */}
-                {product.badge && (
-                  <span className="absolute top-4 left-4 px-3 py-1 bg-gold text-background text-xs font-medium rounded-full">
-                    {product.badge}
-                  </span>
+          {filteredProducts.map((product, index) => {
+            const sizeIndex = selectedSizes[product.id] || 0;
+            const selectedPricing = product.pricing[sizeIndex];
+
+            return (
+              <article
+                key={product.id}
+                className={cn(
+                  'group bg-card border border-border rounded-xl overflow-hidden card-hover transition-all duration-500',
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 )}
+                style={{
+                  transitionDelay: isVisible ? `${400 + index * 100}ms` : '0ms',
+                }}
+              >
+                {/* Image */}
+                <div className="relative aspect-square overflow-hidden">
+                  <img
+                    src={product.image}
+                    alt={`${product.name} - ${product.description}`}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                  />
 
-                {/* Quick action on hover */}
-                <div className="absolute bottom-4 left-4 right-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                  <Button
-                    variant="heroSolid"
-                    className="w-full"
-                    onClick={() => handleWhatsAppOrder(product)}
-                  >
-                    <MessageCircle className="w-4 h-4 mr-2" />
-                    Order Now
-                  </Button>
-                </div>
-              </div>
+                  {/* Overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-              {/* Content */}
-              <div className="p-6">
-                {/* Category & Rating */}
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-gold/80 text-xs tracking-wider uppercase">
-                    {product.category}
-                  </span>
-                  <div className="flex items-center gap-1">
-                    <Star className="w-4 h-4 fill-gold text-gold" />
-                    <span className="text-ivory text-sm">{product.rating}</span>
-                    <span className="text-muted-foreground text-xs">({product.reviews})</span>
+                  {/* Badge */}
+                  {product.badge && (
+                    <span className="absolute top-4 left-4 px-3 py-1 bg-gold text-background text-xs font-medium rounded-full">
+                      {product.badge}
+                    </span>
+                  )}
+
+                  {/* Quick action on hover */}
+                  <div className="absolute bottom-4 left-4 right-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                    <Button
+                      variant="heroSolid"
+                      className="w-full"
+                      onClick={() => handleWhatsAppOrder(product)}
+                    >
+                      <MessageCircle className="w-4 h-4 mr-2" />
+                      Order Now
+                    </Button>
                   </div>
                 </div>
 
-                {/* Name & Description */}
-                <h3 className="font-serif text-xl text-ivory mb-2 group-hover:text-gold transition-colors duration-300">
-                  {product.name}
-                </h3>
-                <p className="text-ivory-muted text-sm mb-3">{product.description}</p>
-
-                {/* Tasting Notes */}
-                <p className="text-muted-foreground text-xs italic mb-4">
-                  {product.tastingNotes}
-                </p>
-
-                {/* Sizes */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {product.sizes.map((size) => (
-                    <span
-                      key={size}
-                      className="px-2 py-1 bg-background border border-border rounded text-xs text-ivory-muted"
-                    >
-                      {size}
+                {/* Content */}
+                <div className="p-6">
+                  {/* Category & Rating */}
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-gold/80 text-xs tracking-wider uppercase">
+                      {product.category}
                     </span>
-                  ))}
-                </div>
+                    <div className="flex items-center gap-1">
+                      <Star className="w-4 h-4 fill-gold text-gold" />
+                      <span className="text-ivory text-sm">{product.rating}</span>
+                      <span className="text-muted-foreground text-xs">({product.reviews})</span>
+                    </div>
+                  </div>
 
-                {/* Price */}
-                <div className="flex items-center gap-3">
-                  <span className="font-serif text-2xl text-gold">₹{product.price}</span>
-                  {product.originalPrice && (
-                    <span className="text-muted-foreground line-through text-sm">
-                      ₹{product.originalPrice}
+                  {/* Name & Description */}
+                  <h3 className="font-serif text-xl text-ivory mb-2 group-hover:text-gold transition-colors duration-300">
+                    {product.name}
+                  </h3>
+                  <p className="text-ivory-muted text-sm mb-3">{product.description}</p>
+
+                  {/* Tasting Notes */}
+                  <p className="text-muted-foreground text-xs italic mb-4">
+                    {product.tastingNotes}
+                  </p>
+
+                  {/* Sizes */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {product.pricing.map((pricing, idx) => (
+                      <button
+                        key={pricing.size}
+                        onClick={() =>
+                          setSelectedSizes((prev) => ({ ...prev, [product.id]: idx }))
+                        }
+                        className={cn(
+                          'px-3 py-1.5 border rounded text-xs transition-all duration-300',
+                          idx === sizeIndex
+                            ? 'bg-gold text-background border-gold'
+                            : 'bg-background border-border text-ivory-muted hover:border-gold/50'
+                        )}
+                      >
+                        {pricing.size}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Price */}
+                  <div className="flex items-center gap-3">
+                    <span className="font-serif text-2xl text-gold">
+                      ₹{selectedPricing.price}
                     </span>
-                  )}
+                    {selectedPricing.originalPrice && (
+                      <span className="text-muted-foreground line-through text-sm">
+                        ₹{selectedPricing.originalPrice}
+                      </span>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
 
         {/* Empty state */}
@@ -350,7 +331,7 @@ export function Products() {
           </p>
           <Button variant="gold" size="lg" asChild>
             <a
-              href="https://wa.me/91XXXXXXXXXX?text=Hi%20TeaHub%20%E2%80%94%20I%27d%20like%20to%20know%20about%20your%20full%20collection."
+              href="https://wa.me/918754148249?text=Hi%20TeaHub%20%E2%80%94%20I%27d%20like%20to%20know%20about%20your%20full%20collection."
               target="_blank"
               rel="noopener noreferrer"
             >

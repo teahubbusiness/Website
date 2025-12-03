@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import logoImg from '@/assets/logo.png';
+import logoImg from '@/assets/logo.webp';
 
 const navLinks = [
   { name: 'Home', href: '#hero' },
@@ -57,7 +57,7 @@ export function Navbar() {
               alt="TeaHub Logo" 
               className="w-10 h-10 object-contain group-hover:scale-105 transition-transform duration-300"
             />
-            <span className="font-serif text-2xl md:text-3xl tracking-tight text-gold group-hover:text-gold-light transition-colors duration-300">
+            <span className="font-serif text-2xl md:text-3xl tracking-tight text-white group-hover:text-white transition-colors duration-300">
               TeaHub
             </span>
           </a>
@@ -83,13 +83,7 @@ export function Navbar() {
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-4">
             <Button variant="gold" size="sm" asChild>
-              <a
-                href="https://wa.me/91XXXXXXXXXX?text=Hi%20TeaHub%20%E2%80%94%20I%27m%20interested%20in%20your%20premium%20teas.%20Please%20help%20with%20pricing%20and%20delivery."
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Contact Us
-              </a>
+             
             </Button>
           </div>
 
@@ -129,7 +123,7 @@ export function Navbar() {
           <li className="pt-4">
             <Button variant="gold" className="w-full" asChild>
               <a
-                href="https://wa.me/91XXXXXXXXXX?text=Hi%20TeaHub%20%E2%80%94%20I%27m%20interested%20in%20your%20premium%20teas."
+                href="https://wa.me/918754148249?text=Hi%20TeaHub%20%E2%80%94%20I%27m%20interested%20in%20your%20premium%20teas."
                 target="_blank"
                 rel="noopener noreferrer"
               >

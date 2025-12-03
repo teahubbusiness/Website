@@ -28,7 +28,7 @@ export function FloatingWhatsApp() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isVisible]);
 
-  const whatsappUrl = "https://wa.me/91XXXXXXXXXX?text=Hi%20TeaHub%20%E2%80%94%20I%27m%20interested%20in%20your%20premium%20teas.%20Please%20help%20with%20pricing%20and%20delivery.";
+  const whatsappUrl = "https://wa.me/918754148249?text=Hi%20TeaHub%20%E2%80%94%20I%27m%20interested%20in%20your%20premium%20teas.%20Please%20help%20with%20pricing%20and%20delivery.";
 
   return (
     <>

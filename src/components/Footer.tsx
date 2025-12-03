@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { MessageCircle, Mail, Phone, MapPin, Instagram, Facebook, Twitter, Send } from 'lucide-react';
+import { MessageCircle, Mail, Phone, MapPin, Instagram, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const quickLinks = [
@@ -12,10 +11,9 @@ const quickLinks = [
 ];
 
 const teaCategories = [
-  { name: 'Classic Black', href: '#flavours' },
-  { name: 'Premium Blends', href: '#flavours' },
-  { name: 'Masala Chai', href: '#flavours' },
-  { name: 'Herbal & Green', href: '#flavours' },
+  { name: 'Premium Tea', href: '#flavours' },
+  { name: 'Masala Tea', href: '#flavours' },
+  { name: 'Green Tea  ', href: '#flavours' },
 ];
 
 const legalLinks = [
@@ -68,40 +66,12 @@ export function Footer() {
               <span className="font-serif text-3xl text-gold">TeaHub</span>
             </a>
             <p className="text-ivory-muted text-sm leading-relaxed mb-6">
-              Curating the world's finest teas since 2009. Single-origin, small-batch, 
+              Curating the world's finest teas since 2025. Single-origin, small-batch, 
               crafted for connoisseurs who appreciate the art of leaf and luxury.
             </p>
             
             {/* Social Links */}
-            <div className="flex items-center gap-4">
-              <a
-                href="https://instagram.com/teahub"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center text-ivory-muted hover:text-gold hover:border-gold transition-all duration-300"
-                aria-label="Follow us on Instagram"
-              >
-                <Instagram className="w-4 h-4" />
-              </a>
-              <a
-                href="https://facebook.com/teahub"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center text-ivory-muted hover:text-gold hover:border-gold transition-all duration-300"
-                aria-label="Follow us on Facebook"
-              >
-                <Facebook className="w-4 h-4" />
-              </a>
-              <a
-                href="https://twitter.com/teahub"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center text-ivory-muted hover:text-gold hover:border-gold transition-all duration-300"
-                aria-label="Follow us on Twitter"
-              >
-                <Twitter className="w-4 h-4" />
-              </a>
-            </div>
+           
           </div>
 
           {/* Quick Links */}
@@ -154,7 +124,7 @@ export function Footer() {
             <ul className="space-y-3 mb-8">
               <li>
                 <a
-                  href="https://wa.me/91XXXXXXXXXX"
+                  href="https://wa.me/918754148249"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-ivory-muted hover:text-gold transition-colors duration-300 text-sm"
@@ -165,54 +135,40 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:hello@teahub.com"
+                  href="https://www.instagram.com/teahub.co"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-3 text-ivory-muted hover:text-gold transition-colors duration-300 text-sm"
                 >
-                  <Mail className="w-4 h-4" />
-                  hello@teahub.com
+                  <Instagram className="w-4 h-4" />
+                  @teahub.co
                 </a>
               </li>
               <li>
                 <a
-                  href="tel:+91XXXXXXXXXX"
+                  href="mailto:teahubbusiness@gmail.com"
+                  className="flex items-center gap-3 text-ivory-muted hover:text-gold transition-colors duration-300 text-sm"
+                >
+                  <Mail className="w-4 h-4" />
+                    teahubbusiness@gmail.com
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+8754148249"
                   className="flex items-center gap-3 text-ivory-muted hover:text-gold transition-colors duration-300 text-sm"
                 >
                   <Phone className="w-4 h-4" />
-                  +91 XXXXX XXXXX
+                  +91 8754148249
                 </a>
               </li>
               <li className="flex items-start gap-3 text-ivory-muted text-sm">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                Mumbai, Maharashtra, India
+                Coimbatore, India
               </li>
             </ul>
 
             {/* Newsletter */}
-            <div>
-              <p className="text-ivory text-sm mb-3">Join our tea circle</p>
-              <form onSubmit={handleSubscribe} className="flex gap-2">
-                <Input
-                  type="email"
-                  placeholder="Your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="bg-background border-border text-ivory placeholder:text-muted-foreground focus:border-gold/50"
-                  required
-                />
-                <Button
-                  type="submit"
-                  variant="gold"
-                  size="icon"
-                  disabled={isSubscribing}
-                  aria-label="Subscribe to newsletter"
-                >
-                  <Send className="w-4 h-4" />
-                </Button>
-              </form>
-              <p className="text-muted-foreground text-xs mt-2">
-                Double opt-in. Unsubscribe anytime.
-              </p>
-            </div>
           </div>
         </div>
       </div>
@@ -227,7 +183,7 @@ export function Footer() {
             </div>
             <Button variant="whatsapp" size="lg" asChild>
               <a
-                href="https://wa.me/91XXXXXXXXXX?text=Hi%20TeaHub%20%E2%80%94%20I%27m%20interested%20in%20your%20premium%20teas.%20Please%20help%20with%20pricing%20and%20delivery."
+                href="https://wa.me/918754148249?text=Hi%20TeaHub%20%E2%80%94%20I%27m%20interested%20in%20your%20premium%20teas.%20Please%20help%20with%20pricing%20and%20delivery."
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -242,20 +198,8 @@ export function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-border">
         <div className="container mx-auto px-4 md:px-8 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+          <div className="flex items-center justify-center text-sm text-muted-foreground">
             <p>© {new Date().getFullYear()} TeaHub. All rights reserved.</p>
-            <div className="flex flex-wrap items-center gap-4">
-              {legalLinks.map((link, index) => (
-                <span key={link.name} className="flex items-center gap-4">
-                  <a href={link.href} className="hover:text-gold transition-colors duration-300">
-                    {link.name}
-                  </a>
-                  {index < legalLinks.length - 1 && (
-                    <span className="w-1 h-1 rounded-full bg-muted-foreground/50" />
-                  )}
-                </span>
-              ))}
-            </div>
           </div>
         </div>
       </div>

@@ -270,9 +270,9 @@ export function Reviews() {
         >
           {[
             { value: '4.9', label: 'Average Rating' },
-            { value: '500+', label: 'Happy Customers' },
+            { value: '50+', label: 'Happy Customers' },
             { value: '98%', label: 'Would Recommend' },
-            { value: '15+', label: 'Tea Varieties' },
+            { value: '100%', label: 'Quality Assurance' },
           ].map((stat, index) => (
             <div key={stat.label} className="text-center">
               <div className="font-serif text-4xl md:text-5xl text-gold mb-2">{stat.value}</div>
