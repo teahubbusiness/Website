@@ -117,11 +117,6 @@ export function About() {
               <div className="absolute -inset-2 border border-gold/10 rounded-lg pointer-events-none" />
             </div>
 
-            {/* Stats overlay */}
-            <div className="absolute -bottom-6 -right-6 bg-card border border-border rounded-lg p-6 shadow-lg">
-              <div className="text-gold font-serif text-4xl mb-1">15+</div>
-              <div className="text-ivory-muted text-sm">Years of Excellence</div>
-            </div>
           </div>
 
           {/* Right: Features */}
