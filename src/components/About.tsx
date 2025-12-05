@@ -1,8 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { Leaf, Award, Globe, Heart } from 'lucide-react';
+import { Leaf, Award, Globe, Heart, Shield } from 'lucide-react';
 
 const features = [
+	{
+		icon: Shield,
+		title: 'FSSAI Certified',
+		description: 'Licensed under FSSAI (Lic. No. 22425562000188) ensuring highest food safety standards.',
+	},
 	{
 		icon: Leaf,
 		title: 'Single Origin',
@@ -96,7 +101,7 @@ export function About() {
 				</div>
 
 				{/* Features Grid */}
-				<div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+				<div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
 					{features.map((feature, index) => (
 						<div
 							key={feature.title}

@@ -1,11 +1,12 @@
 # TeaHub — Premium Tea Brand Website
 
-A luxurious, SEO-optimized single-page website for TeaHub, a premium tea powder brand. Built with React, TypeScript, and Tailwind CSS with a sophisticated black & gold design theme.
+A luxurious, SEO-optimized single-page website for TeaHub, a premium tea powder brand based in Coimbatore, Tamil Nadu. The entire website highlights Coimbatore's rich tea heritage and showcases TeaHub's authentic products from this renowned region. Built with React, TypeScript, and Tailwind CSS with a sophisticated black & gold design theme.
 
 ![TeaHub Preview](src/assets/hero-tea-bg.jpg)
 
 ## Features
 
+- **Made in Coimbatore**: Authentic tea powder sourced and crafted in Coimbatore, India
 - **Elegant Dark Theme**: Deep black background with warm gold (#C9A65A) accents
 - **Responsive Design**: Mobile-first approach, works on all devices
 - **Smooth Animations**: Parallax effects, fade-ins, and micro-interactions
@@ -66,6 +67,8 @@ src/
 
 ## How to Update Content
 
+> **SEO Tip:** For better search visibility, mention "Coimbatore" in product descriptions, About section, and other content where relevant.
+
 ### Changing Product Information
 Edit `src/components/Products.tsx`:
 ```typescript
@@ -75,9 +78,9 @@ const products: Product[] = [
     name: 'Product Name',
     category: 'Classic' | 'Masala' | 'Herbal' | 'Premium',
     image: yourProductImage,
-    description: 'Short description',
+    description: 'Short description from Coimbatore', // Mention Coimbatore for SEO
     tastingNotes: 'Flavor profile',
-    origin: 'Origin location',
+    origin: 'Coimbatore', // Example: add Coimbatore for SEO
     price: 599,
     originalPrice: 749, // Optional - for discounts
     sizes: ['50g', '100g'],
@@ -87,6 +90,16 @@ const products: Product[] = [
   },
   // ... more products
 ];
+```
+
+### Changing About Section
+Edit `src/components/About.tsx`:
+```typescript
+// ...existing code...
+<p>
+  TeaHub is a premium tea brand based in Coimbatore, Tamil Nadu, known for its rich tea heritage and authentic flavors.
+</p>
+// ...existing code...
 ```
 
 ### Changing WhatsApp Number
@@ -104,7 +117,7 @@ const reviews: Review[] = [
   {
     id: '1',
     name: 'Customer Name',
-    location: 'City',
+    location: 'Coimbatore', // Example: add Coimbatore for SEO
     avatar: 'CN', // Initials
     rating: 5,
     date: '2024-11-15',

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, ShoppingBag, ChevronDown } from 'lucide-react';
+import { MessageCircle, ShoppingBag, ChevronDown, Shield } from 'lucide-react';
 import heroTeaBg from '@/assets/hero-tea-bg.jpg';
 import teaCupHero from '@/assets/tea-cup-hero.jpg';
 import { cn } from '@/lib/utils';
@@ -130,8 +130,12 @@ export function Hero() {
           </div>
 
           {/* Trust badges */}
-          <div className="opacity-initial animate-fade-in delay-800 mt-16 flex flex-wrap items-center justify-center gap-8 text-ivory-muted/60 text-xs tracking-wider uppercase">
-            <span>100% Organic</span>
+          <div className="opacity-initial animate-fade-in delay-800 mt-16 flex flex-wrap items-center justify-center gap-6 text-ivory-muted/60 text-xs tracking-wider uppercase">
+            <span className="flex items-center gap-2">
+              FSSAI Certified
+            </span>
+            <span className="w-1 h-1 rounded-full bg-gold/50" />
+            <span>100% Organic Dust</span>
             <span className="w-1 h-1 rounded-full bg-gold/50" />
             <span>All Over India Shipping</span>
             <span className="w-1 h-1 rounded-full bg-gold/50" />

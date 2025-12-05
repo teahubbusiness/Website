@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, Star, Filter } from 'lucide-react';
+import { MessageCircle, Star, Filter, Shield } from 'lucide-react';
 
 // Product images
 import assamGoldImg from '@/assets/products/assam-gold.jpg';
@@ -25,7 +25,7 @@ interface Product {
 const products: Product[] = [
   {
     id: 'darjeeling-first-flush',
-    name: 'Premium Dust Tea',
+    name: 'Premium Dust Tea Powder',
     category: 'Premium Tea',
     image: assamGoldImg,
     description: 'First-flush Darjeeling light, bright and floral with a delicate briskness.',
@@ -41,14 +41,14 @@ const products: Product[] = [
   },
   {
     id: 'masala-chai',
-    name: 'Masala Chai',
+    name: 'Masala Tea Powder',
     category: 'Masala Tea',
     image: masalaChaiImg,
     description: 'Robust spiced black tea blend crafted for brewing with milk warm and invigorating.',
     tastingNotes: 'A warming mix of cinnamon, cardamom, ginger and clove full-bodied and comforting.',
     origin: 'Kerala, India',
     pricing: [
-      { size: '100g', price: 199 },
+      { size: '100g', price: 139 },
       { size: '250g', price: 249 },
     ],
     rating: 4.9,
@@ -57,7 +57,7 @@ const products: Product[] = [
   },
   {
     id: 'organic-green',
-    name: 'Organic Green',
+    name: 'Organic Green Tea Powder',
     category: 'Green Tea',
     image: organicGreenImg,
     description: 'Handpicked organic green tea with a fresh, grassy character and a clean finish.',
@@ -154,7 +154,7 @@ export function Products() {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             )}
           >
-            Find your perfect brew.
+            Find your perfect brew. All products FSSAI certified for safety and quality.
           </p>
         </div>
 
@@ -232,16 +232,10 @@ export function Products() {
                     </span>
                   )}
 
-                  {/* Quick action on hover */}
-                  <div className="absolute bottom-4 left-4 right-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                    <Button
-                      variant="heroSolid"
-                      className="w-full"
-                      onClick={() => handleWhatsAppOrder(product)}
-                    >
-                      <MessageCircle className="w-4 h-4 mr-2" />
-                      Order Now
-                    </Button>
+                  {/* FSSAI Badge */}
+                  <div className="absolute top-4 right-4 flex items-center gap-1 px-2 py-1 bg-background/90 backdrop-blur-sm rounded-full border border-gold/30">
+                    <Shield className="w-3 h-3 text-gold" />
+                    <span className="text-[10px] text-gold font-medium">FSSAI</span>
                   </div>
                 </div>
 
@@ -291,7 +285,7 @@ export function Products() {
                   </div>
 
                   {/* Price */}
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 mb-4">
                     <span className="font-serif text-2xl text-gold">
                       ₹{selectedPricing.price}
                     </span>
@@ -301,6 +295,16 @@ export function Products() {
                       </span>
                     )}
                   </div>
+
+                  {/* Order Button */}
+                  <Button
+                    variant="heroSolid"
+                    className="w-full"
+                    onClick={() => handleWhatsAppOrder(product)}
+                  >
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    Order Now
+                  </Button>
                 </div>
               </article>
             );

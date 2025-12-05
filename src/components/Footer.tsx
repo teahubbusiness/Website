@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, Mail, Phone, MapPin, Instagram, Send } from 'lucide-react';
+import { MessageCircle, Mail, Phone, MapPin, Instagram, Send, Shield } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const quickLinks = [
@@ -70,6 +70,18 @@ export function Footer() {
               crafted for connoisseurs who appreciate the art of leaf and luxury.
             </p>
             
+            {/* FSSAI Certification Badge */}
+            <div className="bg-card border border-gold/20 rounded-lg p-4 mb-4">
+              <div className="flex items-start gap-3">
+                <Shield className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-ivory text-sm font-semibold mb-1">FSSAI Certified</p>
+                  <p className="text-ivory-muted text-xs">License No.</p>
+                  <p className="text-gold text-xs font-mono">22425562000188</p>
+                </div>
+              </div>
+            </div>
+
             {/* Social Links */}
            
           </div>
@@ -198,8 +210,12 @@ export function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-border">
         <div className="container mx-auto px-4 md:px-8 py-6">
-          <div className="flex items-center justify-center text-sm text-muted-foreground">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
             <p>© {new Date().getFullYear()} TeaHub. All rights reserved.</p>
+            <p className="flex items-center gap-2 text-xs">
+              <Shield className="w-3 h-3" />
+              FSSAI Lic. No. 22425562000188
+            </p>
           </div>
         </div>
       </div>

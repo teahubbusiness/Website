@@ -12,12 +12,9 @@ import teaCupHero from '@/assets/tea-cup-hero.jpg';
 
 const scrollImages = [
   { src: earlGreyImg, alt: 'Earl Grey Tea' },
-  { src: assamGoldImg, alt: 'Assam Gold Tea' },
   { src: heroTeaBg, alt: 'Tea Leaves' },
   { src: darjeelingImg, alt: 'Darjeeling Tea' },
-  { src: masalaChaiImg, alt: 'Masala Chai' },
   { src: teaCupHero, alt: 'Premium Tea Cup' },
-  { src: organicGreenImg, alt: 'Organic Green Tea' },
   { src: chamomileBlissImg, alt: 'Chamomile Bliss' },
 ];
 
