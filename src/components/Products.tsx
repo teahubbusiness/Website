@@ -32,7 +32,7 @@ const products: Product[] = [
     tastingNotes: 'Muscatel and floral aromatics with citrusy undertones and a clean, brisk finish.',
     origin: 'Darjeeling, India',
     pricing: [
-      { size: '100g', price: 99 },
+      { size: '125g', price: 99 },
       { size: '250g', price: 199 },
     ],
     rating: 5.0,
@@ -48,7 +48,7 @@ const products: Product[] = [
     tastingNotes: 'A warming mix of cinnamon, cardamom, ginger and clove full-bodied and comforting.',
     origin: 'Kerala, India',
     pricing: [
-      { size: '100g', price: 139 },
+      { size: '125g', price: 139 },
       { size: '250g', price: 249 },
     ],
     rating: 4.9,
@@ -69,6 +69,7 @@ const products: Product[] = [
     ],
     rating: 4.7,
     reviews: 89,
+    badge: 'Natural',
   },
 ];
 
