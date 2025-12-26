@@ -7,11 +7,14 @@ import { MessageCircle, Star, Filter, Shield } from 'lucide-react';
 import assamGoldImg from '@/assets/products/assam-gold.jpg';
 import masalaChaiImg from '@/assets/products/masala-chai.jpg';
 import organicGreenImg from '@/assets/products/organic-green.jpg';
+import Elachi from '@/assets/products/Elathi.png';
+import ginger from '@/assets/products/ginger.png';
+import choco from '@/assets/products/choco.png';
 
 interface Product {
   id: string;
   name: string;
-  category: 'Green Tea' | 'Masala Tea' | 'Premium Tea';
+  category: 'Green Tea' | 'Masala Tea' | 'Premium Tea' | 'Chocolate Tea' | 'Elachi Tea' | 'Ginger Tea';
   image: string;
   description: string;
   tastingNotes: string;
@@ -71,9 +74,58 @@ const products: Product[] = [
     reviews: 89,
     badge: 'Natural',
   },
+  
+  {
+    id: 'chocolate-tea',
+    name: 'Chocolate Tea Powder',
+    category: 'Chocolate Tea',
+    image: choco,
+    description: 'Lush cocoa-forward cup balanced with gentle floral sweetness for a dessert-like brew.',
+    tastingNotes: 'Soft rose and cocoa aromatics with a creamy, mellow finish.',
+    origin: 'Assam, India',
+    pricing: [
+      { size: '125g', price: 125 },
+      { size: '250g', price: 249 },
+    ],
+    rating: 4.8,
+    reviews: 54,
+    badge: 'New',
+  },
+  {
+    id: 'elachi-masala',
+    name: 'Elachi Tea Powder',
+    category: 'Elachi Tea',
+    image: Elachi,
+    description: 'Traditional elachi-inspired spice blend that brews a soothing, balanced cup.',
+    tastingNotes: 'Cardamom-forward warmth with sweet spice and a rounded malty base.',
+    origin: 'Kerala, India',
+    pricing: [
+      { size: '125g', price: 125 },
+      { size: '250g', price: 249 },
+    ],
+    rating: 4.8,
+    reviews: 68,
+    badge: 'Comfort',
+  },
+  {
+    id: 'ginger-blend',
+    name: 'Ginger Tea Powder',
+    category: 'Ginger Tea',
+    image: ginger,
+    description: 'Zesty ginger-laced blend that delivers a bright, reviving cup with gentle heat.',
+    tastingNotes: 'Punchy ginger, light sweetness, and a clean, brisk finish.',
+    origin: 'Assam, India',
+    pricing: [
+      { size: '125g', price: 115 },
+      { size: '250g', price: 220 },
+    ],
+    rating: 4.6,
+    reviews: 47,
+    badge: 'Zing',
+  },
 ];
 
-const categories = ['All', 'Green Tea', 'Masala Tea', 'Premium Tea'];
+const categories = ['All', 'Green Tea', 'Masala Tea', 'Premium Tea', 'Chocolate', 'Elachi', 'Ginger'];
 
 export function Products() {
   const [isVisible, setIsVisible] = useState(false);
@@ -120,7 +172,7 @@ export function Products() {
     const sizeIndex = selectedSizes[product.id] || 0;
     const selectedPricing = product.pricing[sizeIndex];
     const message = encodeURIComponent(
-      `Hi TeaHub — I'm interested in ${product.name} (${selectedPricing.size}) at ₹${selectedPricing.price}. Please help with delivery.`
+      `Hi TeaHub — I'm interested in ${product.name} (${selectedPricing.size}) at ₹${selectedPricing.price}. Assist me with the delivery.`
     );
     window.open(`https://wa.me/918754148249?text=${message}`, '_blank');
   };
